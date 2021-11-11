@@ -1,5 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
-import { useEffect } from 'react'
+import { createContext, ReactNode, useState, useEffect } from "react";
 import  { api } from '../services/api'
 
 
@@ -48,12 +47,7 @@ export function AuthProvider(props: AuthProvider) {
             code: githubCode,
 
         })
-     function signOut() {
-         setUser(null)
-         localStorage.removeItem('@webtoken:token')
-     }
-
-
+    
 
         const { token, user } = response.data 
 
@@ -64,6 +58,12 @@ export function AuthProvider(props: AuthProvider) {
         
         setUser(user)
     }
+
+    function signOut() {
+        setUser(null)
+        localStorage.removeItem('@webtoken:token')
+    }
+
 
     useEffect (() => {
         const token = localStorage.getItem('@webtoken:token')
@@ -93,7 +93,7 @@ export function AuthProvider(props: AuthProvider) {
     }, []) 
 
     return(
-        <AuthContext.Provider value={{ signInUrl, user, signOut() {} }}>
+        <AuthContext.Provider value={{ signInUrl, user, signOut}}>
             {props.children}
         </AuthContext.Provider> 
 

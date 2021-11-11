@@ -1,5 +1,5 @@
 import { useContext, useState, FormEvent} from 'react'
-import { VscSignOut } from 'react-icons/vsc'
+import { VscSignOut, VscGithubInverted } from 'react-icons/vsc'
 import { AuthContext } from '../../contexts/auth'
 import { api } from '../../services/api'
 import styles from './style.module.scss'
@@ -37,12 +37,13 @@ export function SendMessageBox() {
                 </div>
                 <strong className={styles.userName}>{user?.name}</strong>
                 <span className={styles.userGithub}>
-                    {user?.login }
+                    <VscGithubInverted size="16" />
+                    {user?.login}
                 </span>
             </header>
 
 
-            <form onChange={handleSendMessage}className={styles.sendMessageForm}>
+            <form onChange={handleSendMessage} className={styles.sendMessageForm}>
                 <label htmlFor="message">Mensagem</label>
                 <textarea  
                     name="message"

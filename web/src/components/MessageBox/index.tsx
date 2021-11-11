@@ -15,7 +15,7 @@ type Message = {
     }
 }
 
-const messagesQueue: Message [] =  []
+const messagesQueue: Message[] =  []
 
 const socket = io('http://localhost:4000')
 
@@ -29,13 +29,13 @@ export function MessageBox() {
     const [messages, setMessages] = useState<Message[]>([])
 
     useEffect(() => {
-        const timer = setInterval(() => {
+        setInterval(() => {
             if(messagesQueue.length > 0) {
                 setMessages(prevState => [
                 messagesQueue[0],
                 prevState[0],
                 prevState[1]
-                ].filter(Boolean ))
+                ].filter(Boolean))
 
 
                 messagesQueue.shift()
@@ -46,9 +46,8 @@ export function MessageBox() {
     useEffect(() => {
         api.get<Message[]>('messages/lastthree').then(response => {
             setMessages(response.data)
-        }
-            )}, 
-        [])
+        })
+    }, [])
 
 
     return (
