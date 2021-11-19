@@ -13,8 +13,9 @@ export function SendMessageBox() {
 
     async function handleSendMessage(event: FormEvent ) {
         event.preventDefault()
+
         if(!message.trim()) {
-            return 
+            return; 
         }
 
         await api.post('messages', { message })
@@ -43,7 +44,7 @@ export function SendMessageBox() {
             </header>
 
 
-            <form onChange={handleSendMessage} className={styles.sendMessageForm}>
+            <form onSubmit={handleSendMessage} className={styles.sendMessageForm}>
                 <label htmlFor="message">Mensagem</label>
                 <textarea  
                     name="message"
@@ -52,9 +53,9 @@ export function SendMessageBox() {
                     onChange={event => setMessage(event.target.value)}
                     value={message}
                 />
-            </form>
-
+            
             <button type="submit">Enviar mensagem</button>
+            </form>
         </div>
     )
 }
